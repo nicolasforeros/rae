@@ -1,44 +1,45 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RadioButton } from 'react-native-radio-buttons-group';
-import { IQuestion } from '../../common/types/types';
+import { IFactor, IQuestion } from '../../common/types/types';
 import Color from '../../res/constants/colors';
 import Font from '../../res/constants/fonts';
 import FontSize from '../../res/constants/fontSizes';
 
 interface IProps {
   id: number;
-  question: IQuestion;
-  Icon: React.ElementType;
+  factor: IFactor;
   onHandleChange: (id: number, value: string) => void;
 }
 
-const Question = ({ id, question, Icon, onHandleChange }: IProps) => {
+const Factor = ({ id, factor, onHandleChange }: IProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Icon />
-        <Text style={styles.titleText}>{question.description}</Text>
+        <Text style={styles.titleText}>
+          {factor.name}{' '}
+          <Text style={styles.idText}>{`[${id+1}]`}</Text>
+        </Text>
       </View>
       <View style={styles.radioGroup}>
         <RadioButton
           id={'yes'}
-          label='Si'
-          value='yes'
+          label="Si"
+          value="yes"
           size={16}
           color={Color.PRIMARY}
           labelStyle={styles.radioButton}
-          selected={question.isYes}
+          selected={factor.isYes}
           onPress={(value) => onHandleChange(id, value)}
         />
         <RadioButton
           id={'no'}
-          label='No'
-          value='no'
+          label="No"
+          value="no"
           size={16}
           color={Color.PRIMARY}
           labelStyle={styles.radioButton}
-          selected={question.isYes === false}
+          selected={factor.isYes === false}
           onPress={(value) => onHandleChange(id, value)}
         />
       </View>
@@ -57,16 +58,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    flexDirection: 'row',
     alignItems: 'center',
   },
   titleText: {
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 10,
     color: Color.TEXT_QUESTION,
     fontFamily: Font.REGULAR,
-    fontSize: FontSize.ABOUT,
+    fontSize: FontSize.INPUT,
+    textAlign: 'center'
+  },
+  idText:{
+    color: Color.TEXT_QUESTION,
+    fontFamily: Font.REGULAR,
+    fontSize: FontSize.INFO,
   },
   radioButton: {
     fontFamily: Font.REGULAR,
@@ -74,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Question;
+export default Factor;

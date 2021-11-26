@@ -11,37 +11,29 @@ import ImageLayout from '../../common/layouts/ImageLayout';
 import Color from '../../res/constants/colors';
 import Font from '../../res/constants/fonts';
 import FontSize from '../../res/constants/fontSizes';
-import Question from './Question';
-import Question1Icon from '../../res/assets/icons/question1.svg';
-import Question2Icon from '../../res/assets/icons/question2.svg';
-import Question3Icon from '../../res/assets/icons/question3.svg';
-import Question4Icon from '../../res/assets/icons/question4.svg';
-import { initialQuestions } from '../../res/constants/questions';
+import { initialFactors } from '../../res/constants/questions';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/types';
+import Factor from './Factor';
 
-const icons = [
-  Question1Icon,
-  Question2Icon,
-  Question3Icon,
-  Question4Icon,
-];
+const arrayResults = [55, 65, 77, 86, 98];
 
-const Test = ({
+const AdditionalFactors = ({
+  route,
   navigation,
-}: NativeStackScreenProps<RootStackParamList, 'Test'>) => {
-  const [questions, setQuestions] = useState(initialQuestions);
+}: NativeStackScreenProps<RootStackParamList, 'AdditionalFactors'>) => {
+  const [factors, setFactors] = useState(initialFactors);
 
   const onHandleChange = (id: number, value: string) => {
-    const newQuestions = questions.slice();
+    const newQuestions = factors.slice();
     newQuestions[id].isYes = value === 'yes';
 
-    setQuestions(newQuestions);
+    setFactors(newQuestions);
   };
 
   const hasAllQuestionsAnswer = () => {
-    for (let index = 0; index < questions.length; index++) {
-      const question = questions[index];
+    for (let index = 0; index < factors.length; index++) {
+      const question = factors[index];
 
       if (question.isYes === undefined) {
         return false;
@@ -52,7 +44,29 @@ const Test = ({
   };
 
   const onPressResults = () => {
-    navigation.navigate('AdditionalFactors', { questions });
+    const filterQuestions = route.params?.questions.filter(
+      (question) => question.isYes
+    );
+
+    let sum = -4.5;
+    filterQuestions?.forEach((question) => (sum += question.weight));
+
+    sum = Math.exp(sum);
+    sum = (sum / (1 + sum)) * 100;
+
+    let i = 0;
+    for (i = 0; i < arrayResults.length; i++) {
+      const element = arrayResults[i];
+
+      if (sum < element) {
+        break;
+      }
+    }
+
+    navigation.navigate('Results', {
+      questionPosition: i,
+      factorPosition: factors.filter((question) => question.isYes).length || 1,
+    });
   };
 
   const handleOnPressReferences = () => {
@@ -63,29 +77,29 @@ const Test = ({
     <ImageLayout>
       <ScrollView style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.title}>
-            Modelo predictivo de factores de riesgo de reabsorción radicular
-            externa pos-ortodoncia
-          </Text>
-          <Text style={styles.subtitle}>
-            Factores
-          </Text>
+          <Text style={styles.title}>Factores Adicionales</Text>
           <View style={styles.questions}>
-            {questions.map((question, index) => (
-              <Question
+            {factors.map((factor, index) => (
+              <Factor
                 key={index}
                 id={index}
-                question={question}
-                Icon={icons[index]}
+                factor={factor}
                 onHandleChange={onHandleChange}
               />
             ))}
           </View>
           <ButtonPrimary
-            text="Continuar"
+            text="Evaluar"
             onPress={onPressResults}
             disabled={!hasAllQuestionsAnswer()}
           />
+          <View style={styles.footer}>
+            <TouchableOpacity onPress={handleOnPressReferences}>
+              <Text style={styles.footerText}>
+                Consulte aquí las referencias
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </ImageLayout>
@@ -120,6 +134,17 @@ const styles = StyleSheet.create({
   questions: {
     width: '100%',
   },
+  footer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 40,
+    marginTop: 20,
+  },
+  footerText: {
+    color: Color.SECONDARY,
+    fontFamily: Font.REGULAR,
+    textDecorationLine: 'underline',
+  },
 });
 
-export default Test;
+export default AdditionalFactors;

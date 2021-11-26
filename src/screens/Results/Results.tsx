@@ -9,12 +9,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { PieChart } from 'react-native-chart-kit';
 import ImageLayout from '../../common/layouts/ImageLayout';
 import { RootStackParamList } from '../../navigation/types';
 import Color from '../../res/constants/colors';
 import Font from '../../res/constants/fonts';
 import FontSize from '../../res/constants/fontSizes';
+import StarIcon from '../../res/assets/icons/star.svg';
+import Question1Icon from '../../res/assets/icons/question4.svg';
 
 const { height, width } = Dimensions.get('window');
 
@@ -30,62 +31,112 @@ const Results = ({
     navigation.navigate('RegisterPatient');
   };
 
-  const data = route.params?.questions
-    .filter((question) => question.isYes)
-    .map((question, index) => {
-      return {
-        name: `Pregunta ${index + 1}: ${question.name}`,
-        weight: question.weight,
-        color: question.color,
-        legendFontColor: Color.TEXT_QUESTION,
-        legendFontSize: FontSize.ANSWER,
-      };
-    });
-
   return (
     <ImageLayout>
       <ScrollView style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.title}>La probabilidad de caries es:</Text>
-          {data && (
-            <>
-              <View style={styles.questions}>
-                <PieChart
-                  data={data}
-                  width={width}
-                  height={280}
-                  chartConfig={chartConfig}
-                  accessor={'weight'}
-                  backgroundColor={'transparent'}
-                  paddingLeft={'0'}
-                  center={[width / 4, 0]}
-                  hasLegend={false}
-                />
-                <View style={styles.sum}>
-                  <Text style={styles.sumText}>
-                    {data.reduce((partial_sum, a) => partial_sum + a.weight, 0)}
-                    %
-                  </Text>
-                  <Text style={styles.totalText}>Total</Text>
+          <Text style={styles.title}>
+            Probabilidades según gráfica secuencial
+          </Text>
+          <View style={styles.grid}>
+            {[...Array(10)].map((factor, index) => (
+              <View key={index} style={styles.row}>
+                <View
+                  style={[
+                    styles.cell,
+                    {
+                      backgroundColor: `rgba(${23 + index * 20}, ${
+                        106 + index * 20
+                      }, ${88 + index * 20}, 1)`,
+                    },
+                  ]}
+                >
+                  {route.params?.questionPosition == 0 &&
+                    route.params.factorPosition == 10 - index && (
+                      <Question1Icon style={{backgroundColor: 'white', borderRadius: 0}}/>
+                    )}
+                </View>
+                <View
+                  style={[
+                    styles.cell,
+                    {
+                      backgroundColor: `rgba(${129 + index * 20}, ${
+                        109 + index * 20
+                      }, ${20 + index * 20}, 1)`,
+                    },
+                  ]}
+                >
+                  {route.params?.questionPosition == 1 &&
+                    route.params.factorPosition == 10 - index && (
+                      <Question1Icon style={{backgroundColor: 'white', borderRadius: 0}}/>
+                    )}
+                </View>
+                <View
+                  style={[
+                    styles.cell,
+                    {
+                      backgroundColor: `rgba(${124 + index * 20}, ${
+                        76 + index * 20
+                      }, ${29 + index * 20}, 1)`,
+                    },
+                  ]}
+                >
+                  {route.params?.questionPosition == 2 &&
+                    route.params.factorPosition == 10 - index && (
+                      <Question1Icon style={{backgroundColor: 'white', borderRadius: 0}}/>
+                    )}
+                </View>
+                <View
+                  style={[
+                    styles.cell,
+                    {
+                      backgroundColor: `rgba(${125 + index * 20}, ${
+                        51 + index * 20
+                      }, ${42 + index * 20}, 1)`,
+                    },
+                  ]}
+                >
+                  {route.params?.questionPosition == 3 &&
+                    route.params.factorPosition == 10 - index && (
+                      <Question1Icon style={{backgroundColor: 'white', borderRadius: 0}}/>
+                    )}
+                </View>
+                <View
+                  style={[
+                    styles.cell,
+                    {
+                      backgroundColor: `rgba(${106 + index * 20}, ${
+                        41 + index * 20
+                      }, ${34 + index * 20}, 1)`,
+                    },
+                  ]}
+                >
+                  {route.params?.questionPosition == 4 &&
+                    route.params.factorPosition == 10 - index && (
+                      <Question1Icon style={{backgroundColor: 'white', borderRadius: 0}}/>
+                    )}
                 </View>
               </View>
-              <View style={styles.answersGroup}>
-                {data.map((answer, index) => (
-                  <View key={index} style={styles.answer}>
-                    <View
-                      style={[styles.number, { backgroundColor: answer.color }]}
-                    >
-                      <Text style={styles.numberText}>
-                        {answer.weight}
-                        <Text style={styles.percentage}>%</Text>
-                      </Text>
-                    </View>
-                    <Text style={styles.answersText}>{answer.name}</Text>
-                  </View>
-                ))}
+            ))}
+
+            <View style={styles.row}>
+              <View style={styles.cell}>
+                <Text style={styles.percentage}>Probabilidad normal</Text>
               </View>
-            </>
-          )}
+              <View style={styles.cell}>
+                <Text style={styles.percentage}>Probabilidad Considerable</Text>
+              </View>
+              <View style={styles.cell}>
+                <Text style={styles.percentage}>Muy Considerable</Text>
+              </View>
+              <View style={styles.cell}>
+                <Text style={styles.percentage}>Alta Considerable</Text>
+              </View>
+              <View style={styles.cell}>
+                <Text style={styles.percentage}>Muy Alto</Text>
+              </View>
+            </View>
+          </View>
           <TouchableOpacity onPress={handleOnPress}>
             <Image
               style={styles.image}
@@ -108,15 +159,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  grid: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '97%',
+  },
   title: {
-    marginTop: 44,
-    color: Color.TEXT_PRIMARY,
+    marginTop: 35,
+    marginBottom: 25,
+    color: Color.PRIMARY,
     fontFamily: Font.BOLD,
     fontSize: FontSize.TITLE,
+    textAlign: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cell: {
+    flex: 1,
+    height: 34,
+    marginHorizontal: 1.5,
+    marginVertical: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   questions: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  finalResult: {
+    position: 'absolute',
+    fontFamily: Font.BOLD,
+    fontSize: 40,
   },
   sum: {
     backgroundColor: Color.TEXT_SECONDARY,
@@ -168,7 +243,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   percentage: {
+    fontFamily: Font.REGULAR,
     fontSize: FontSize.PERCENTAGE,
+    textAlign: 'center',
   },
   image: {
     resizeMode: 'contain',

@@ -7,6 +7,7 @@ export type RootStackParamList = {
   NewPatient: undefined
   RegisterPatient: undefined
   Test: undefined
-  Results: {questions: IQuestion[]} | undefined
+  AdditionalFactors: {questions: IQuestion[]} | undefined
+  Results: {questionPosition: number, factorPosition: number} | undefined
   References: undefined
 }

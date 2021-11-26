@@ -11,7 +11,9 @@ const ImageLayout = ({ children }: IProps) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={[Color.PRIMARY, Color.SECONDARY]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        colors={[Color.SECONDARY, Color.PRIMARY]}
         style={styles.header}
       >
         <Image
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 4,
-    backgroundColor: Color.SECONDARY,
+    backgroundColor: Color.PRIMARY,
   },
   body: {
     flex: 1,

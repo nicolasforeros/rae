@@ -38,29 +38,26 @@ const About = ({
           <Text style={styles.title}>Acerca de (v 2.1.1.)</Text>
           <View style={styles.useTerms}>
             <Text style={styles.useTermsText}>
-              El app de probabilidad de riesgo para caries dental es una
-              aplicación basada en la evidencia científica que busca ayudar al
-              odontólogo general y especialista a determinar una probabilidad
-              cuantificable del riesgo de caries, para que lo pueda considerar
-              en su plan de tratamiento y compartir con su paciente. Los
-              artículos fundamentales de la app son:{'\n\n'}
+              La app de Reabsorción Radicular pos Ortodoncia, basada en un
+              proceso investigativo y en la evidencia científica, es una
+              aplicación que tiene como propósito ayudar al ortodoncista a
+              determinar la probabilidad de riesgo de reabsorción radicular pos
+              ortodoncia que tiene un paciente. El concepto clínico final al
+              respecto, será siempre del profesional.{'\n\n'}La app se
+              fundamentó en una investigación realizada en la Universidad
+              Autónoma de Manizales titulada:{' '}
               <Text style={styles.referenceText}>
-                Nobre MA, Sezinando A, Fernandes I, Maló P. Risk Score to
-                Predict Dental Caries in Adult Patients for Use in the Clinical
-                Setting. J Clin Med. 2019; 8(2):203{'\n\n'}
+                Modelo predictivo de factores de riesgo para la reabsorción
+                radicular pos-ortodoncia.{' '}
               </Text>
-              <Text style={styles.referenceText}>
-                Brons-Piche E, Eckert GJ, Fontana M. Predictive Validity of a
-                Caries Risk Assessment Model at a Dental School. J Dent Educ.
-                2019; 83(2):144-150.{'\n\n'}
-              </Text>
-              <Text style={styles.referenceText}>
-                Mejàre I, Axelsson S, Dahlén G, Espelid I, Norlund A, Tranæus S,
-                Twetman S. Caries risk assessment. A systematic review. Acta
-                Odontol Scand. 2014;72(2):81-91{'\n\n\n'}
-              </Text>
-              Autores académicos:{'\n'}Odontólogas Olga Patricia López Soto y
-              Adriana Marcela López Macías.{'\n\n'}Autores ingenieros:{'\n'}
+              Autores: Ramiro Mejía Sanín, Olga Patricia López Soto, Nathalia
+              Molina Bastidas, David González Guerrero, Sebastián Buitrago
+              Marín. Repositorio de Investigación. Universidad Autónoma de
+              Manizales.2018:{'\n\n'}
+              Autores académicos:{'\n'}Ramiro Mejía Sanín, Olga Patricia López
+              Soto, Nathalia Molina Bastidas, David González Guerrero, Sebastián
+              Buitrago Marín, Eola de la Rosa Marrugo.{'\n\n'}Grupo de
+              ingeniería:{'\n'}
               Ingeniero de Sistemas Carlos Andres Zapata Ospina y Joven
               Investigador Nicolas Forero Segovia
             </Text>

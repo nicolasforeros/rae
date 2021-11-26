@@ -38,37 +38,27 @@ const References = ({
           <Text style={styles.title}>Referencias</Text>
           <View style={styles.useTerms}>
             <Text style={styles.useTermsText}>
-              [1] van der Kaaij NCW. Preventie van wittevleklaesies die ontstaan
-              tijdens een behandeling met vaste orthodontische apparatuur
-              [Prevention of white spot lesion formation during treatment with
-              fixed orthodontic appliances]. Ned Tijdschr Tandheelkd.
-              2020;127(12):699-704.{'\n\n'}[2] Sanders A, Cardel M, Laniado N,
-              Kaste L, Finlayson T, Perreira K, Sotres-Alvarez D. Diet quality
-              and dental caries in the Hispanic Community Health Study/Study of
-              Latinos. J Public Health Dent. 2020;80(2):140-149.{'\n\n'}[3]
-              Vahabzadeh Z, Hashemi ZM, Nouri B, Zamani F, Shafiee F. Salivary
-              enzymatic antioxidant activity and dental caries: A
-              cross-sectional study. Dent Med Probl. 2020;57(4):385-391.{'\n\n'}
-              [4] Badr F, Sabbah W. Inequalities in Untreated Root Caries and
-              Affordability of Dental Services among Older American Adults. Int
-              J Environ Res Public Health. 2020 Nov 17;17(22):8523{'\n\n'}[5]
-              Brons-Piche E, Eckert GJ, Fontana M. Predictive Validity of a
-              Caries Risk Assessment Model at a Dental School. J Dent Educ. 2019
-              Feb;83(2):144-150.{'\n\n'}[6] Figuero E, Nóbrega DF,
-              García-Gargallo M, Tenuta LM, Herrera D, Carvalho JC. Mechanical
-              and chemical plaque control in the simultaneous management of
-              gingivitis and caries: a systematic review. J Clin Periodontol.
-              2017 Mar;44 Suppl 18:S116-S134.{'\n\n'}[7] Mejàre, I.; Axelsson,
-              S.; Dahlén, G.; Espelid, I.; Norlund, A.; Tranæus, S.; Twetman, S.
-              Caries risk assessment. A systematic review. Acta Odontol. Scand.
-              2014, 72, 81–91.{'\n\n'}[8] Mejàre, I.; Axelsson, S.; Dahlén, G.;
-              Espelid, I.; Norlund, A.; Tranæus, S.; Twetman, S. Caries risk
-              assessment. A systematic review. Acta Odontol. Scand. 2014, 72,
-              81–91.{'\n\n'}[9] Merchant AT. Periodontitis and dental caries
-              occur together. J Evid Based Dent Pract. 2012 Sep;12(3
-              Suppl):18-9.{'\n\n'}[10] Johnston, L.; Vieira, A.R. Caries
-              experience and overall health status. Oral Health Prev. Dent.
-              2014, 12, 163–170.
+              [1] Pereira SA, Lopez M, Lavado N, et al. A clinical risk
+              predictionmodel of orthodontic induced externalk apical root
+              resorption. Rev Port Estomatol Cir Maxilofac. 2014;55:66-72
+              {'\n\n'}[2] Nanekrungsan K, Patanaporn V, Janhom A, Korwanich N.
+              External apical root resorption in maxillary incisors in
+              orthodontic patients: associated factors and radiographic
+              evaluation. Imaging Sci Dent. 2012 Sep;42(3):147-54. doi:
+              10.5624/isd.2012.42.3.147. Epub 2012 Sep 21. PMID: 23071964;
+              PMCID: PMC3465756.{'\n\n'}[3] Márquez JF, Castaño JM, Rueda ZV,
+              Rendón J. Diagnóstico de reabsorción radicular externa en
+              ortodoncia. Una revisión sistemática. Revista Nacional de
+              Odontología. 2012; 8(14): 62-75.{'\n\n'}
+              [4] Weltman B, Vig KW, Fields HW, Shanker S, Kaizar EE. Root
+              resorption associated with orthodontic tooth movement: a
+              systematic review. Am J Orthod Dentofacial Orthop. 2010
+              Apr;137(4):462-76; discussion 12A. doi:
+              10.1016/j.ajodo.2009.06.021. PMID: 20362905.{'\n\n'}[5] Roscoe MG,
+              Meira JB, Cattaneo PM. Association of orthodontic force system and
+              root resorption: A systematic review. Am J Orthod Dentofacial
+              Orthop. 2015 May;147(5):610-26. doi: 10.1016/j.ajodo.2014.12.026.
+              PMID: 25919107.
             </Text>
           </View>
           <ButtonPrimary text="Regresar" onPress={handleOnBack} />

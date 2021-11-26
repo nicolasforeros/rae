@@ -25,7 +25,7 @@ const ButtonPrimary = ({ text, disabled, onPress }: IProps) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Color.PRIMARY,
+    backgroundColor: Color.BUTTON,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

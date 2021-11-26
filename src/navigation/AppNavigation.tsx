@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useContext } from 'react';
 import { StateContext } from '../provider/provider';
 import About from '../screens/About/About';
+import AdditionalFactors from '../screens/AdditionalFactors/AdditionalFactors';
 import NewPatient from '../screens/NewPatient/NewPatient';
 import PrivacyPolicies from '../screens/PrivacyPolicies/PrivacyPolicies';
 import References from '../screens/References/References';
@@ -29,6 +30,7 @@ const AppNavigation = () => {
         <Stack.Screen name={'NewPatient'} component={NewPatient} />
         <Stack.Screen name={'RegisterPatient'} component={RegisterPatient} />
         <Stack.Screen name={'Test'} component={Test} />
+        <Stack.Screen name={'AdditionalFactors'} component={AdditionalFactors} />
         <Stack.Screen name={'Results'} component={Results} />
         <Stack.Screen name={'References'} component={References} />
       </Stack.Navigator>

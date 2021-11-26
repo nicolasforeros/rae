@@ -1,9 +1,12 @@
 export interface IQuestion {
-  name: string;
   description: string;
   weight: number;
   isYes: boolean | undefined;
-  color: string;
+}
+
+export interface IFactor {
+  name: string;
+  isYes: boolean | undefined;
 }
 
 export interface IUser {
