@@ -28,7 +28,11 @@ const Results = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, 'Results'>) => {
   const handleOnPress = () => {
-    navigation.navigate('RegisterPatient');
+    // navigation.navigate('RegisterPatient');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'RegisterPatient' }],
+    });
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -15,6 +15,9 @@ import { initialFactors } from '../../res/constants/questions';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/types';
 import Factor from './Factor';
+import { StateContext } from '../../provider/provider';
+import { useSendData } from '../Test/useSendData';
+import { IPatient, IUser } from '../../common/types/types';
 
 const arrayResults = [55, 65, 77, 86, 98];
 
@@ -22,11 +25,27 @@ const AdditionalFactors = ({
   route,
   navigation,
 }: NativeStackScreenProps<RootStackParamList, 'AdditionalFactors'>) => {
+  const { user, patient } = useContext(StateContext);
+
   const [factors, setFactors] = useState(initialFactors);
 
+  const { mutate: sendData } = useSendData({
+    app: 'caries',
+    user: user || ({} as IUser),
+    patient: patient || ({} as IPatient),
+    answers: {
+      questions: route.params?.questions || [],
+      additionalFactors: factors,
+    },
+  });
+
   const onHandleChange = (id: number, value: string) => {
-    const newQuestions = factors.slice();
-    newQuestions[id].isYes = value === 'yes';
+    const newQuestions = [...factors];
+    const answer = {
+      ...newQuestions[id],
+      isYes: value === 'yes',
+    };
+    newQuestions[id] = answer;
 
     setFactors(newQuestions);
   };
@@ -62,6 +81,8 @@ const AdditionalFactors = ({
         break;
       }
     }
+
+    sendData();
 
     navigation.navigate('Results', {
       questionPosition: i,

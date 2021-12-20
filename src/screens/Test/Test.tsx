@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -19,6 +19,9 @@ import Question4Icon from '../../res/assets/icons/question4.svg';
 import { initialQuestions } from '../../res/constants/questions';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/types';
+import { StateContext } from '../../provider/provider';
+import { IPatient, IUser } from '../../common/types/types';
+import { useSendData } from './useSendData';
 
 const icons = [
   Question1Icon,
@@ -30,11 +33,16 @@ const icons = [
 const Test = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, 'Test'>) => {
+
   const [questions, setQuestions] = useState(initialQuestions);
 
   const onHandleChange = (id: number, value: string) => {
-    const newQuestions = questions.slice();
-    newQuestions[id].isYes = value === 'yes';
+    const newQuestions = [...questions];
+    const answer = {
+      ...newQuestions[id],
+      isYes: value === 'yes',
+    };
+    newQuestions[id] = answer;
 
     setQuestions(newQuestions);
   };
